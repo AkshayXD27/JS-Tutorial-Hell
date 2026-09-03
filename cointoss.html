@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head><title>Coin toss</title></head>
+    <body>
+        <h1> Choose a side </h1>
+        <button onclick="coinToss('heads')">Heads</button>
+        <button onclick="coinToss('tails')">Tails</button>
+        <button onclick="scoreReset()">Reset</button>
+        <div id="content"></div>
+        <script>
+         let toss = "";
+         let result = "";
+         let score = JSON.parse(localStorage.getItem('score')) || {win : 0, losses :0};
+          function coinToss(guess){
+            if (Math.random()>=0.5){
+              toss = "heads"
+            }
+            else{
+              toss = "tails"
+            }
+            if(toss == guess){
+              score.win += 1;
+              result = "You won";
+            }
+            else {
+              score.losses += 1;
+              result = "You lost";
+            }
+            alert(`You picked ${guess} and the toss is ${toss} and ${result}`);
+            Score();
+            localStorage.setItem('score' , JSON.stringify(score))
+          }
+           function Score(){
+             ele = document.getElementById('content');
+             ele.innerHTML =  `<p> The number of times you won = ${score.win} The number of times you lost = ${score.losses} </p>`
+           }
+
+           function scoreReset(){
+             score.win = 0;
+             score.losses = 0;
+             localStorage.removeItem('score');
+             Score();
+           }
+
+        </script>
+    </body>
+</html>
