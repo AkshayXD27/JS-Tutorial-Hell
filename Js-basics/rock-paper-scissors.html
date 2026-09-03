@@ -14,15 +14,15 @@
         <button onclick="
             calcResult('Scissors',pickComputerMove());
             "> Scissors </button>
+        <button onclick="
+            localStorage.removeItem('scores')
+            alert('The score has been reset')
+            "> Reset </button>
         <div id="content"></div>
     </body>
     <script>
-        const scores = {
-          win: 0,
-          losses: 0,
-          tie:0
-        };
 
+        let scores = JSON.parse(localStorage.getItem('scores')) || {win: 0,tie: 0,losses: 0};
         function pickComputerMove() {
           let randomNumber = Math.random();
           let computerMove = '';
@@ -75,9 +75,16 @@
             alert(`You Chose ${userInp} and Computer Picked ${computerMove}, You Won!`)
             scores.win += 1;
           }
+          updateScore();
+          localStorage.setItem('scores',JSON.stringify(scores));
+          //stores value into local databse
+        }
+
+        function updateScore(){
           const ele = document.getElementById("content");
           ele.innerHTML =   `<p>Wins = ${scores.win} Losses = ${scores.losses} Ties = ${scores.tie} </p> `
         }
+
 
     </script>
 </html>
