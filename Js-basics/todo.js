@@ -4,7 +4,7 @@ function render() {
   let taskHolder = "";
 
   for (let i = 0; i < tasks.length; i++){
-    const html = ` <p> ${tasks[i]} <span> ${time[i]} </span>  <span> <button onclick="deleteTask(${i})"> Delete </button> </span></p> `;
+    const html = ` <p> ${tasks[i]} <span> ${time[i]} </span>  <span> <button id="delete" onclick="deleteTask(${i})"> Delete </button> </span></p> `;
     taskHolder += html;
      }
   document.querySelector('.tasks').innerHTML = taskHolder;
