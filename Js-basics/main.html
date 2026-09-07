@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Main Page </title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Valley+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <style>
+            *{
+                font-family: 'Valley Sans';
+            }
+        </style>
+    </head>
+    <body>
+        <p> Youtube Subscribe Button </p>
+        <button onclick="Subscribing()">
+            Subscribe
+        </button>
+        <script>
+        let subStatus = localStorage.getItem('subStatus') || 'Subscribe';
+
+        if(subStatus == "Subscribed"){
+          document.querySelector('button').innerHTML = "Subscribed";
+        }
+          function Subscribing(){
+            if (subStatus == 'Subscribe') {
+            document.querySelector('button').innerHTML = 'Subscribed';
+            subStatus = 'Subscribed';
+            localStorage.setItem('subStatus',subStatus);}
+            else {
+              document.querySelector('button').innerHTML = 'Subscribe';
+              subStatus = 'Subscribe';
+              localStorage.setItem('subStatus',subStatus);}
+            }
+
+        </script>
+    </body>
+</html>
