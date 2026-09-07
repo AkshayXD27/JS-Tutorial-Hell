@@ -9,6 +9,9 @@
             *{
                 font-family: 'Valley Sans';
             }
+            #totalCost {
+                margin-top: 20px;
+            }
         </style>
     </head>
     <body>
@@ -19,6 +22,19 @@
 
         <p> Rock Paper Scissors </p>
         <a href="rock-paper-scissors.html">Click Here</a>
+
+        <p>Amazon Shipping Calculator</p>
+        <p>Orders under $40 = +$10 shipping.</p>
+        <p>Orders over $40 = FREE shipping.</p>
+
+            <input class="costs" type="number" placeholder="Cost Of Order">
+            <button onclick="calculateCost()">Calculate</button>
+
+        <div id="totalCost">
+
+        </div>
+
+
         <script>
         let subStatus = localStorage.getItem('subStatus') || 'Subscribe';
 
@@ -35,7 +51,20 @@
               subStatus = 'Subscribe';
               localStorage.setItem('subStatus',subStatus);}
             }
+            function calculateCost(){
+              placeHolder = document.getElementById('totalCost');
 
+              console.log('function ran')
+              let cost = document.querySelector('.costs').value;
+              cost = parseFloat(cost);
+              if(cost < 40){
+                cost += 10;
+                totalCost.innerHTML = `Total cost = $${cost}`;
+              }
+              else{
+                totalCost.innerHTML =  `Total cost =  $${cost}`;
+              }
+            }
 
         </script>
     </body>
